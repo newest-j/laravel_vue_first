@@ -1,12 +1,17 @@
 <template>
-  <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8"
+  >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
         Create your account
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600">
         Or
-        <router-link to="/login" class="font-medium text-indigo-600 hover:text-indigo-500">
+        <router-link
+          to="/login"
+          class="font-medium text-indigo-600 hover:text-indigo-500"
+        >
           sign in to your existing account
         </router-link>
       </p>
@@ -15,7 +20,10 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" @submit.prevent="handleRegister">
-          <div v-if="authStore.error" class="bg-red-50 border border-red-200 rounded-md p-4">
+          <div
+            v-if="authStore.error"
+            class="bg-red-50 border border-red-200 rounded-md p-4"
+          >
             <div class="text-sm text-red-600">{{ authStore.error }}</div>
           </div>
 
@@ -35,7 +43,9 @@
                 :class="{ 'border-red-300': errors.name }"
               />
             </div>
-            <p v-if="errors.name" class="mt-2 text-sm text-red-600">{{ errors.name }}</p>
+            <p v-if="errors.name" class="mt-2 text-sm text-red-600">
+              {{ errors.name }}
+            </p>
           </div>
 
           <div>
@@ -54,11 +64,16 @@
                 :class="{ 'border-red-300': errors.email }"
               />
             </div>
-            <p v-if="errors.email" class="mt-2 text-sm text-red-600">{{ errors.email }}</p>
+            <p v-if="errors.email" class="mt-2 text-sm text-red-600">
+              {{ errors.email }}
+            </p>
           </div>
 
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <div class="mt-1">
@@ -73,11 +88,16 @@
                 :class="{ 'border-red-300': errors.password }"
               />
             </div>
-            <p v-if="errors.password" class="mt-2 text-sm text-red-600">{{ errors.password }}</p>
+            <p v-if="errors.password" class="mt-2 text-sm text-red-600">
+              {{ errors.password }}
+            </p>
           </div>
 
           <div>
-            <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
+            <label
+              for="password_confirmation"
+              class="block text-sm font-medium text-gray-700"
+            >
               Confirm Password
             </label>
             <div class="mt-1">
@@ -92,11 +112,19 @@
                 :class="{ 'border-red-300': errors.password_confirmation }"
               />
             </div>
-            <p v-if="errors.password_confirmation" class="mt-2 text-sm text-red-600">{{ errors.password_confirmation }}</p>
+            <p
+              v-if="errors.password_confirmation"
+              class="mt-2 text-sm text-red-600"
+            >
+              {{ errors.password_confirmation }}
+            </p>
           </div>
 
           <div>
-            <label for="training_center_id" class="block text-sm font-medium text-gray-700">
+            <label
+              for="training_center_id"
+              class="block text-sm font-medium text-gray-700"
+            >
               Training Center
             </label>
             <div class="mt-1">
@@ -109,12 +137,21 @@
                 :class="{ 'border-red-300': errors.training_center_id }"
               >
                 <option value="">Select a training center</option>
-                <option v-for="center in trainingCenters" :key="center.id" :value="center.id">
+                <option
+                  v-for="center in trainingCenters"
+                  :key="center.id"
+                  :value="center.id"
+                >
                   {{ center.name }}
                 </option>
               </select>
             </div>
-            <p v-if="errors.training_center_id" class="mt-2 text-sm text-red-600">{{ errors.training_center_id }}</p>
+            <p
+              v-if="errors.training_center_id"
+              class="mt-2 text-sm text-red-600"
+            >
+              {{ errors.training_center_id }}
+            </p>
           </div>
 
           <div>
@@ -134,7 +171,9 @@
                 :class="{ 'border-red-300': errors.skill }"
               />
             </div>
-            <p v-if="errors.skill" class="mt-2 text-sm text-red-600">{{ errors.skill }}</p>
+            <p v-if="errors.skill" class="mt-2 text-sm text-red-600">
+              {{ errors.skill }}
+            </p>
           </div>
 
           <div>
@@ -153,7 +192,9 @@
                 placeholder="Tell us about yourself..."
               ></textarea>
             </div>
-            <p v-if="errors.bio" class="mt-2 text-sm text-red-600">{{ errors.bio }}</p>
+            <p v-if="errors.bio" class="mt-2 text-sm text-red-600">
+              {{ errors.bio }}
+            </p>
           </div>
 
           <div>
@@ -163,9 +204,25 @@
               class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span v-if="authStore.loading" class="flex items-center">
-                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
                 Creating account...
               </span>
@@ -179,10 +236,10 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { useAuthStore } from '@/stores/auth';
-import { trainingCenterService } from '@/services/api';
+import { ref, reactive, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
+import { trainingCenterService } from "@/services/api";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -190,71 +247,71 @@ const authStore = useAuthStore();
 const trainingCenters = ref([]);
 
 const form = reactive({
-  name: '',
-  email: '',
-  password: '',
-  password_confirmation: '',
-  training_center_id: '',
+  name: "",
+  email: "",
+  password: "",
+  password_confirmation: "",
+  training_center_id: "",
   skill: 50,
-  bio: ''
+  bio: "",
 });
 
 const errors = reactive({
-  name: '',
-  email: '',
-  password: '',
-  password_confirmation: '',
-  training_center_id: '',
-  skill: '',
-  bio: ''
+  name: "",
+  email: "",
+  password: "",
+  password_confirmation: "",
+  training_center_id: "",
+  skill: "",
+  bio: "",
 });
 
 const validateForm = () => {
-  errors.name = '';
-  errors.email = '';
-  errors.password = '';
-  errors.password_confirmation = '';
-  errors.training_center_id = '';
-  errors.skill = '';
-  errors.bio = '';
+  errors.name = "";
+  errors.email = "";
+  errors.password = "";
+  errors.password_confirmation = "";
+  errors.training_center_id = "";
+  errors.skill = "";
+  errors.bio = "";
 
   if (!form.name) {
-    errors.name = 'Name is required';
+    errors.name = "Name is required";
   }
 
   if (!form.email) {
-    errors.email = 'Email is required';
+    errors.email = "Email is required";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    errors.email = 'Please enter a valid email address';
+    errors.email = "Please enter a valid email address";
   }
 
   if (!form.password) {
-    errors.password = 'Password is required';
+    errors.password = "Password is required";
   } else if (form.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters';
+    errors.password = "Password must be at least 8 characters";
   }
 
   if (!form.password_confirmation) {
-    errors.password_confirmation = 'Password confirmation is required';
+    errors.password_confirmation = "Password confirmation is required";
   } else if (form.password !== form.password_confirmation) {
-    errors.password_confirmation = 'Passwords do not match';
+    errors.password_confirmation = "Passwords do not match";
   }
 
   if (!form.training_center_id) {
-    errors.training_center_id = 'Training center is required';
+    errors.training_center_id = "Training center is required";
   }
 
   if (form.skill < 0 || form.skill > 100) {
-    errors.skill = 'Skill level must be between 0 and 100';
+    errors.skill = "Skill level must be between 0 and 100";
   }
 
   if (!form.bio) {
-    errors.bio = 'Bio is required';
+    errors.bio = "Bio is required";
   } else if (form.bio.length < 20) {
-    errors.bio = 'Bio must be at least 20 characters';
+    errors.bio = "Bio must be at least 20 characters";
   }
 
-  return !Object.values(errors).some(error => error);
+  return !Object.values(errors).some((error) => error);
 };
 
 const loadTrainingCenters = async () => {
@@ -262,7 +319,7 @@ const loadTrainingCenters = async () => {
     const response = await trainingCenterService.getAll();
     trainingCenters.value = response;
   } catch (error) {
-    console.error('Failed to load training centers:', error);
+    console.error("Failed to load training centers:", error);
   }
 };
 
@@ -277,15 +334,15 @@ const handleRegister = async () => {
     password_confirmation: form.password_confirmation,
     training_center_id: form.training_center_id,
     skill: form.skill,
-    bio: form.bio
+    bio: form.bio,
   });
 
   if (result.success) {
-    router.push('/');
+    router.push("/");
   }
 };
 
 onMounted(() => {
   loadTrainingCenters();
 });
-</script> 
+</script>
